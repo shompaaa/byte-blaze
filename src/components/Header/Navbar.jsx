@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { NavLink } from "react-router";
 
 const Navbar = () => {
     const [theme, setTheme] = useState('light')
@@ -19,21 +20,21 @@ const Navbar = () => {
     }
 
   return (
-    <div className="navbar bg-base-100 shadow-lg px-4 sticky">
+    <div className="navbar bg-base-100 shadow-lg px-4 fixed z-10">
       <div className="flex-1">
         <a className="btn btn-ghost gap-0 text-secondary font-bold text-2xl">Byte <span className="text-primary">Blaze</span></a>
       </div>
       <div className="flex-none">
-        <ul className="menu menu-horizontal px-1 font-bold">
-          <li>
+        <ul className="menu menu-horizontal px-1 font-bold gap-6">
+          <NavLink className={({isActive})=> isActive ? 'text-primary' : ''} to="/">
             <a>Home</a>
-          </li>
-             <li>
+          </NavLink>
+             <NavLink className={({isActive})=> isActive ? 'text-primary' : ''} to="/blogs">
             <a>Blogs</a>
-          </li>
-             <li>
+          </NavLink>
+             <NavLink className={({isActive})=> isActive ? 'text-primary' : ''} to="/bookmarks">
             <a>Bookmarks</a>
-          </li>
+          </NavLink>
         </ul>
         {/* Theme Controller  */}
         <label className="toggle text-base-content">

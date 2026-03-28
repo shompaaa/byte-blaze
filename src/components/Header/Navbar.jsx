@@ -9,36 +9,37 @@ const Navbar = () => {
         document.querySelector('html').setAttribute('data-theme',localTheme)
     },[theme])
 
-    const handleToggle = (e)=>{
+    const handleToggle = e =>{
         if(e.target.checked){
             setTheme('synthwave')
-        }else{
+        }
+        else{
             setTheme('light')
         }
     }
+
   return (
-    <div className="navbar bg-base-100 shadow-lg px-4 fixed z-10">
+    <div className="navbar bg-base-100 shadow-lg px-4 sticky">
       <div className="flex-1">
-        <a className="btn btn-ghost font-bold gap-0 text-secondary normal-case text-2xl">Byte<span className="text-primary">Blaze</span></a>
+        <a className="btn btn-ghost gap-0 text-secondary font-bold text-2xl">Byte <span className="text-primary">Blaze</span></a>
       </div>
       <div className="flex-none">
         <ul className="menu menu-horizontal px-1 font-bold">
           <li>
             <a>Home</a>
           </li>
-          <li>
+             <li>
             <a>Blogs</a>
           </li>
-          <li>
+             <li>
             <a>Bookmarks</a>
           </li>
         </ul>
-
-        {/*Theme Controller (Light | Dark)  */}
+        {/* Theme Controller  */}
         <label className="toggle text-base-content">
-          <input
-          onChange={handleToggle}
+          <input onChange={handleToggle}
             type="checkbox"
+            value="synthwave"
             className="theme-controller"
           />
 

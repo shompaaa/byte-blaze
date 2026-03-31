@@ -7,7 +7,7 @@ const Blog = ({ blog }) => {
   return (
     <Link
       to={`/blogs/${id}`}
-      className="max-w-sm mx-auto group hover:no-underline focus:no-underline "
+      className="max-w-sm mx-auto transition border-2 hover:scale-105 border-primary hover:border-secondary border-opacity-30 group hover:no-underline focus:no-underline "
     >
       <img
         role="presentation"

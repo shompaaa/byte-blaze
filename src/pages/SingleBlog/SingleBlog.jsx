@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { Link, Outlet, useLoaderData } from "react-router";
+import { MdBookmarkAdd } from "react-icons/md";
+import { saveBlog } from "../../utils";
 
 const SingleBlog = () => {
   const singleBlog = useLoaderData();
-  const [tabIndex, setTabIndex] = useState(0)
+  const [tabIndex, setTabIndex] = useState(0);
   const {
     comments_count,
     published_at,
@@ -11,6 +13,11 @@ const SingleBlog = () => {
     reading_time_minutes,
     public_reactions_count,
   } = singleBlog;
+
+  const handleBookmark = (blog) =>{
+    saveBlog(blog)
+  }
+
   return (
     <div className="max-w-3xl px-6 py-16 mx-auto space-y-12">
       <article className="space-y-8 dark:bg-gray-100 dark:text-gray-900">
@@ -24,16 +31,16 @@ const SingleBlog = () => {
               {new Date(published_at).toDateString()}
             </p>
 
-            <p className="flex-shrink-0 mt-3 text-sm md:mt-0">
+            <p className="shrink-0 mt-3 text-sm md:mt-0">
               {comments_count} comments • {public_reactions_count} views
             </p>
           </div>
           {/* Tabs */}
           <div className="flex items-center overflow-x-auto overflow-y-hidden sm:justify-start flex-nowrap dark:bg-gray-100 dark:text-gray-800">
             <Link
-            onClick={()=>setTabIndex(0)}
-               to=''
-                className={`flex items-center flex-shrink-0 px-5 py-3 space-x-2 ${tabIndex === 0 ? 'border border-b-0' : 'border-b'}  rounded-t-lg dark:border-gray-600 dark:text-gray-900`}
+              onClick={() => setTabIndex(0)}
+              to=""
+              className={`flex items-center shrink-0 px-5 py-3 space-x-2 ${tabIndex === 0 ? "border border-b-0" : "border-b"}  rounded-t-lg dark:border-gray-600 dark:text-gray-900`}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -50,9 +57,9 @@ const SingleBlog = () => {
               <span>Content</span>
             </Link>
             <Link
-            onClick={()=>setTabIndex(1)}
+              onClick={() => setTabIndex(1)}
               to={`author`}
-              className={`flex items-center flex-shrink-0 px-5 py-3 space-x-2 ${tabIndex === 1 ? 'border border-b-0' : 'border-b'}  rounded-t-lg dark:border-gray-600 dark:text-gray-900`}
+              className={`flex items-center shrink-0 px-5 py-3 space-x-2 ${tabIndex === 1 ? "border border-b-0" : "border-b"}  rounded-t-lg dark:border-gray-600 dark:text-gray-900`}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -69,11 +76,14 @@ const SingleBlog = () => {
               </svg>
               <span>Author</span>
             </Link>
+            {/* Bookmark Button */}
+            <div onClick={()=>handleBookmark(singleBlog)} className="p-3 ml-5 rounded-full hover:bg-primary/30 bg-primary/20 cursor-pointer hover:scale-105 overflow-hidden">
+              <MdBookmarkAdd size={20} className="text-secondary" />
+            </div>
           </div>
         </div>
       </article>
       <Outlet></Outlet>
-   
     </div>
   );
 };
